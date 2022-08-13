@@ -5,7 +5,6 @@ import Home from './pages/Home/Home';
 import Navbar from './components/Navbar/Navbar';
 import { Container } from '@mui/material';
 import AddNote from './components/AddNote/AddNote';
-import { useState } from 'react';
 import EditNote from './components/EditNote/EditNote';
 
 function App() {

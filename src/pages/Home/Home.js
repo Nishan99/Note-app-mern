@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./Home.module.css";
-import { Box, SpeedDialIcon, SpeedDial, Container, Grid } from "@mui/material";
+import { Box, SpeedDialIcon, SpeedDial, Container } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import Note from "../Note/Note";
 const Home = () => {
