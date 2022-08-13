@@ -3,15 +3,10 @@ import {
   Card,
   CardContent,
   CardHeader,
-  Fade,
-  Grid,
   IconButton,
-  Menu,
-  MenuItem,
   Typography,
 } from "@mui/material";
 import { red } from "@mui/material/colors";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
 
 import DeleteIcon from "@mui/icons-material/Delete";
 import React, { useState, useEffect } from "react";
@@ -19,7 +14,6 @@ import "./Note.module.css";
 import Masonry from "react-masonry-css";
 import axios from "axios";
 import EditIcon from "@mui/icons-material/Edit";
-import EditNote from "../../components/EditNote/EditNote";
 import { useNavigate } from "react-router-dom";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
@@ -30,20 +24,10 @@ const Note = () => {
   useEffect(() => {
     axios.get("http://localhost:3001/note").then((res) => {
       setData(res.data);
-      console.log(res.data);
+
       setIsLoading(true);
     });
   }, []);
-
-  const [openMenu, setOpenMenu] = useState(false);
-  const handleMenu = () => {};
-
-  const handleMenuItem = (path) => {
-    // navigate(`/${path}`)
-  };
-  console.log(data);
-
-  const [anchorEl, setAnchorEl] = useState(null);
 
   const deleteNote = (id) => {
     axios.delete(`http://localhost:3001/note/delete/${id}`).then((res) => {
@@ -68,10 +52,10 @@ const Note = () => {
       >
         {data.map((item, index) => {
           return (
-            <Card sx={{ maxWidth: 345 }} elevation={5}>
+            <Card key={index} sx={{ maxWidth: 345 }} elevation={5}>
               <CardHeader
                 avatar={
-                  <Avatar sx={{  bgcolor: red[500] }} aria-label="recipe">
+                  <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
                     {item.title[0].toUpperCase()}
                   </Avatar>
                 }
@@ -107,14 +91,32 @@ const Note = () => {
     );
   } else {
     return (
-      
-        <div className="loader_item" style={{display:'flex', justifyContent:'space-between',flexWrap:'wrap',margin:'20px 0px'}}>
-          <Skeleton count={5} style={{ borderRadius: 8, width:200,marginBottom:'8px'}} />
-          <Skeleton count={5} style={{ borderRadius: 8 ,width:200,marginBottom:'8px'}} />
-          <Skeleton count={5} style={{ borderRadius: 8 ,width:200,marginBottom:'8px'}} />
-          <Skeleton count={5} style={{ borderRadius: 8 ,width:200,marginBottom:'8px'}} />
-        </div>
-       
+      <div
+        className="loader_item"
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          flexWrap: "wrap",
+          margin: "20px 0px",
+        }}
+      >
+        <Skeleton
+          count={5}
+          style={{ borderRadius: 8, width: 200, marginBottom: "8px" }}
+        />
+        <Skeleton
+          count={5}
+          style={{ borderRadius: 8, width: 200, marginBottom: "8px" }}
+        />
+        <Skeleton
+          count={5}
+          style={{ borderRadius: 8, width: 200, marginBottom: "8px" }}
+        />
+        <Skeleton
+          count={5}
+          style={{ borderRadius: 8, width: 200, marginBottom: "8px" }}
+        />
+      </div>
     );
   }
 };

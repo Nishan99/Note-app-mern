@@ -10,13 +10,11 @@ import {
 } from "@mui/material";
 import React, { useState } from "react";
 import styles from "./AddNote.module.css";
-import { useNavigate,useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from 'axios'
 
 const AddNote = () => {
-  const location = useLocation()
-
-  console.log( location.pathname)
+  
   const navigate = useNavigate();
   const [data, setData] = useState({
     title: "",

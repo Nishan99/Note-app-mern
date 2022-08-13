@@ -5,10 +5,9 @@ import { Box, Container } from "@mui/system";
 import { useNavigate } from "react-router-dom";
 import { Button, FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/material";
 import axios from 'axios'
-import { orange } from "@mui/material/colors";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
-const btnColor = orange[400]
+
 const EditNote = () => {
   const navigate = useNavigate()
   const { id } = useParams();
@@ -28,11 +27,11 @@ const EditNote = () => {
 
   useEffect(()=>{
     axios.get(`http://localhost:3001/note/edit/${id}`).then(res=>{
-      console.log('edit details',res.data)
+     
       setData(res.data)
       setIsLoading(true)
     })
-  },[])
+  },[id])
   
  
   
